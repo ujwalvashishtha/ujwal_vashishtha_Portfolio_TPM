@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ujwal Vashishtha — Senior Technical Program Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0c10;
+    --bg2: #0f1218;
+    --bg3: #151a22;
+    --gold: #d4a843;
+    --gold-dim: #a07830;
+    --text: #e8e4dc;
+    --muted: #8a8680;
+    --border: rgba(212, 168, 67, 0.15);
+    --border-subtle: rgba(255,255,255,0.06);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(10, 12, 16, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 5vw 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 55vw; height: 55vw;
+    background: radial-gradient(circle, rgba(212,168,67,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  .hero-inner { max-width: 900px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.1s forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  h1.hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  h1.hero-name span { color: var(--gold); }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 3vw, 1.9rem);
+    font-weight: 400;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.3s forwards;
+  }
+
+  .hero-lead {
+    font-size: 1.05rem;
+    color: #b0ab9f;
+    max-width: 580px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.4s forwards;
+  }
+
+  .hero-lead strong { color: var(--text); font-weight: 500; }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.5s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--gold);
+    color: #0a0c10;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #e8bb55; transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(212,168,67,0.06); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 5vw;
+    font-size: 0.72rem;
+    font-family: var(--mono);
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.9s forwards;
+  }
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 40px; height: 1px;
+    background: var(--muted);
+  }
+
+  /* STATS */
+  .stats {
+    background: var(--bg2);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 4rem 5vw;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-right: 1px solid var(--border-subtle);
+    position: relative;
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 5vw;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-tag::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  h2.section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    color: #9a9590;
+    max-width: 600px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: #b0ab9f;
+    margin-bottom: 1.2rem;
+    line-height: 1.85;
+  }
+  .about-text p strong { color: var(--text); }
+
+  .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .info-block {
+    border-left: 2px solid var(--gold);
+    padding-left: 1.2rem;
+  }
+  .info-block .label {
+    font-size: 0.72rem;
+    font-family: var(--mono);
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .info-block .value {
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  /* EXPERIENCE */
+  .exp-full { max-width: 1200px; margin: 0 auto; padding: 6rem 5vw; }
+
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 0 0 3rem 0;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+  }
+
+  .timeline-meta {
+    padding-left: 1.5rem;
+    text-align: right;
+  }
+
+  .timeline-period {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-company {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .timeline-content { padding-left: 1rem; }
+
+  .timeline-role {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .timeline-domain {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-family: var(--mono);
+    background: rgba(212,168,67,0.12);
+    color: var(--gold);
+    padding: 0.2rem 0.6rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .timeline-bullets li {
+    font-size: 0.92rem;
+    color: #9a9590;
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .timeline-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+    font-size: 0.75rem;
+    top: 0.1rem;
+  }
+
+  /* PROGRAMS */
+  .programs-section { background: var(--bg2); }
+  .programs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 5vw;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: var(--border-subtle);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .program-card {
+    background: var(--bg2);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+  .program-card:hover { background: var(--bg3); }
+
+  .program-icon {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .program-name {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .program-client {
+    font-size: 0.72rem;
+    font-family: var(--mono);
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .program-desc {
+    font-size: 0.88rem;
+    color: #8a8680;
+    line-height: 1.75;
+    margin-bottom: 1.2rem;
+  }
+
+  .program-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.68rem;
+    font-family: var(--mono);
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+
+  .skill-group h3 {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: 0.9rem;
+    color: #9a9590;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .skill-list li:last-child { border-bottom: none; }
+
+  .skill-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .skill-dot.high { opacity: 1; }
+  .skill-dot.med { opacity: 0.6; }
+
+  /* CONTACT */
+  .contact-section { background: var(--bg2); }
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .contact-left h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .contact-left p {
+    color: #8a8680;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-subtle);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: var(--border); background: rgba(212,168,67,0.04); }
+
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    background: rgba(212,168,67,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .contact-link-text { font-size: 0.85rem; }
+  .contact-link-label { display: block; font-size: 0.7rem; color: var(--muted); font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.15rem; }
+
+  .contact-right {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+  }
+
+  .contact-right h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .domains-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .domains-list li {
+    font-size: 0.88rem;
+    color: #9a9590;
+    padding: 0.5rem 0.75rem;
+    background: rgba(212,168,67,0.04);
+    border-left: 2px solid var(--gold-dim);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 5vw;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; }
+    .timeline-meta { text-align: left; padding-left: 1.5rem; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+    .stat-item:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">UV</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-tag">Senior Technical Program Manager · Bengaluru, India</p>
+    <h1 class="hero-name">Ujwal<br /><span>Vashishtha</span></h1>
+    <p class="hero-title">Program leader. Delivery architect. Cross-border team builder.</p>
+    <p class="hero-lead">
+      6+ years driving <strong>complex, multi-million dollar programs</strong> across OTT/Pay-TV, online gaming, SaaS, and cybersecurity. Most recently, led the <strong>Astro Sooka OTT launch</strong> — a $40M+ program spanning 55+ engineers across three countries, delivered in under 12 months.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="#experience" class="btn-outline">View experience</a>
+    </div>
+  </div>
+  <p class="scroll-hint">Scroll to explore</p>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <span class="stat-num" data-target="6">0</span>
+      <span class="stat-label">Years of experience</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num" data-target="55" data-suffix="+">0</span>
+      <span class="stat-label">Engineers led</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num" data-prefix="$" data-target="40" data-suffix="M+">0</span>
+      <span class="stat-label">Flagship program value</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num" data-target="3">0</span>
+      <span class="stat-label">Countries in scope</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num" data-target="5">0</span>
+      <span class="stat-label">Industry verticals</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">About</div>
+  <h2 class="section-title reveal">Built for complexity.<br />Wired for delivery.</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm a Senior TPM who thrives at the intersection of <strong>technology, people, and delivery pressure</strong>. My career has taken me from rolling out 4G BTS networks across UP West to launching a flagship OTT platform for one of Southeast Asia's largest broadcasters — each step pushing me to manage bigger programs, harder constraints, and more distributed teams.
+      </p>
+      <p>
+        At <strong>Irdeto</strong>, I run a multi-client program spanning Tata Play, Astro Malaysia, and ITV UK — coordinating 55+ engineers across India, Malaysia, and the UK. I own end-to-end delivery governance, stakeholder communication, and release cadence across three time zones.
+      </p>
+      <p>
+        Before that, at <strong>Junglee Games</strong>, I built the Marketing Technology operating model from scratch and orchestrated a zero-downtime GST rollout across five live real-money gaming applications — under regulatory deadline pressure.
+      </p>
+      <p>
+        I'm most valuable when the program is large, the stakeholders are diverse, and the delivery clock is ticking.
+      </p>
+    </div>
+    <div class="about-sidebar reveal">
+      <div class="info-block">
+        <div class="label">Current role</div>
+        <div class="value">Senior Technical Program Manager, Irdeto</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Location</div>
+        <div class="value">Bengaluru, Karnataka, India</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Education</div>
+        <div class="value">B.Tech, Electronics & Communication<br />Amity University, Noida — 2020</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Certification</div>
+        <div class="value">Certified Scrum Master (CSM)</div>
+      </div>
+      <div class="info-block">
+        <div class="label">Open to</div>
+        <div class="value">Senior TPM · Engineering Program Manager · Delivery Manager roles across India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<div class="exp-full" id="experience">
+  <div class="section-tag reveal">Experience</div>
+  <h2 class="section-title reveal">Where I've delivered.</h2>
+  <p class="section-lead reveal">6+ years across five verticals — always in the delivery seat.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <span class="timeline-period">2022 — Present</span>
+        <div class="timeline-company">Irdeto</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Senior Technical Program Manager</div>
+        <span class="timeline-domain">OTT / Pay-TV · Cybersecurity · SaaS</span>
+        <ul class="timeline-bullets">
+          <li>Led the Astro Sooka OTT platform launch — a $40M+ program with 55+ engineers across India, Malaysia, and the UK, delivered in under 12 months.</li>
+          <li>Manage a multi-client portfolio covering Tata Play, Astro Malaysia, and ITV UK; own cross-timezone delivery governance and executive stakeholder communication.</li>
+          <li>Drive sprint planning, dependency mapping, and release governance across six concurrent engineering squads.</li>
+          <li>Established risk escalation frameworks and program-level dashboards adopted across the delivery org.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <span class="timeline-period">2020 — 2022</span>
+        <div class="timeline-company">Junglee Games</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Technical Program Manager</div>
+        <span class="timeline-domain">Online Gaming · Real-Money Gaming · MarTech</span>
+        <ul class="timeline-bullets">
+          <li>Built the Marketing Technology operating model from scratch, aligning engineering, product, and growth teams under a unified delivery framework.</li>
+          <li>Orchestrated a zero-downtime GST compliance rollout across five live real-money gaming applications under regulatory deadline pressure.</li>
+          <li>Managed concurrent delivery across five gaming apps; introduced Agile ceremonies that cut average sprint variance by 30%.</li>
+          <li>Owned stakeholder reporting to VP-level leadership across product, legal, and engineering functions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <span class="timeline-period">2018 — 2020</span>
+        <div class="timeline-company">Infinite Computer Solutions</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Business Analyst & Junior TPM</div>
+        <span class="timeline-domain">Pay-TV · Subscriber Management</span>
+        <ul class="timeline-bullets">
+          <li>Played a dual BA + TPM role on the Tata Play subscriber management platform — bridging requirements, user stories, and sprint execution.</li>
+          <li>Authored functional specs, led UAT cycles, and coordinated post-production deployments across subscriber-facing features.</li>
+          <li>Supported program management for a 20+ person engineering team, tracking milestones and managing stakeholder communications.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <span class="timeline-period">2017 — 2018</span>
+        <div class="timeline-company">ZTE Corporation</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Network Deployment Coordinator</div>
+        <span class="timeline-domain">Telecom · 4G / LTE Infrastructure</span>
+        <ul class="timeline-bullets">
+          <li>Coordinated 4G BTS rollout for Vodafone Idea across UP West — managing field teams, site readiness, and integration timelines.</li>
+          <li>Tracked deployment milestones across 100+ tower sites; flagged blockers and escalated to project leads for resolution.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<div class="programs-section">
+  <div class="programs-inner" id="programs">
+    <div class="section-tag reveal">Key Programs</div>
+    <h2 class="section-title reveal">Flagship deliveries.</h2>
+    <p class="section-lead reveal">Programs that define the scale and scope of what I run.</p>
+    <div class="programs-grid">
+
+      <div class="program-card reveal">
+        <span class="program-icon">📡</span>
+        <div class="program-name">Astro Sooka OTT Launch</div>
+        <div class="program-client">Astro Malaysia · Irdeto</div>
+        <p class="program-desc">Full-scale OTT platform delivery for one of Southeast Asia's largest broadcasters. Coordinated 55+ engineers across three countries. $40M+ program value. Delivered sub-12 months.</p>
+        <div class="program-tags">
+          <span class="tag">OTT</span>
+          <span class="tag">55+ Engineers</span>
+          <span class="tag">Multi-country</span>
+          <span class="tag">$40M+</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <span class="program-icon">📺</span>
+        <div class="program-name">Tata Play Platform Evolution</div>
+        <div class="program-client">Tata Play · Irdeto & ICS</div>
+        <p class="program-desc">Subscriber management and platform feature delivery across two engagements. Spanned BA, requirements ownership, UAT, and TPM governance for one of India's largest DTH operators.</p>
+        <div class="program-tags">
+          <span class="tag">Pay-TV</span>
+          <span class="tag">Subscriber Mgmt</span>
+          <span class="tag">Platform</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <span class="program-icon">🎮</span>
+        <div class="program-name">GST Compliance Rollout</div>
+        <div class="program-client">Junglee Games</div>
+        <p class="program-desc">Zero-downtime regulatory compliance delivery across five live real-money gaming applications. Managed engineering, legal, and product alignment under hard regulatory deadlines.</p>
+        <div class="program-tags">
+          <span class="tag">Compliance</span>
+          <span class="tag">Zero Downtime</span>
+          <span class="tag">Real-money Gaming</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <span class="program-icon">📣</span>
+        <div class="program-name">MarTech Operating Model</div>
+        <div class="program-client">Junglee Games</div>
+        <p class="program-desc">Built the Marketing Technology operating model from the ground up — aligning engineering, growth, and product into a repeatable delivery framework that scaled across five gaming apps.</p>
+        <div class="program-tags">
+          <span class="tag">MarTech</span>
+          <span class="tag">Operating Model</span>
+          <span class="tag">Greenfield</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <span class="program-icon">🏟️</span>
+        <div class="program-name">ITV UK Delivery Stream</div>
+        <div class="program-client">ITV · Irdeto</div>
+        <p class="program-desc">Program governance and milestone tracking for ITV UK engineering deliveries — part of a three-client portfolio managed concurrently across India, Malaysia, and the UK.</p>
+        <div class="program-tags">
+          <span class="tag">UK Market</span>
+          <span class="tag">Multi-client</span>
+          <span class="tag">OTT</span>
+        </div>
+      </div>
+
+      <div class="program-card reveal">
+        <span class="program-icon">📶</span>
+        <div class="program-name">4G BTS Network Rollout</div>
+        <div class="program-client">Vodafone Idea · ZTE</div>
+        <p class="program-desc">Coordinated LTE infrastructure deployment for Vodafone Idea across UP West — field team management, site readiness tracking, and integration milestone delivery for 100+ tower sites.</p>
+        <div class="program-tags">
+          <span class="tag">Telecom</span>
+          <span class="tag">LTE / 4G</span>
+          <span class="tag">Field Delivery</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag reveal">Skills</div>
+  <h2 class="section-title reveal">Capabilities.</h2>
+  <p class="section-lead reveal">Built across five verticals and six years of real program delivery.</p>
+
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <h3>Program Management</h3>
+      <ul class="skill-list">
+        <li>Program & Portfolio Delivery <span class="skill-dot high"></span></li>
+        <li>Agile / Scrum / SAFe <span class="skill-dot high"></span></li>
+        <li>Risk & Dependency Management <span class="skill-dot high"></span></li>
+        <li>Release Governance <span class="skill-dot high"></span></li>
+        <li>Cross-functional Leadership <span class="skill-dot high"></span></li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Stakeholder & Communication</h3>
+      <ul class="skill-list">
+        <li>Executive Stakeholder Management <span class="skill-dot high"></span></li>
+        <li>Program Reporting & Dashboards <span class="skill-dot high"></span></li>
+        <li>Requirements & Business Analysis <span class="skill-dot high"></span></li>
+        <li>Client Engagement (Multi-client) <span class="skill-dot high"></span></li>
+        <li>Vendor & Partner Coordination <span class="skill-dot med"></span></li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Tools & Platforms</h3>
+      <ul class="skill-list">
+        <li>Jira / Confluence <span class="skill-dot high"></span></li>
+        <li>MS Project / Excel <span class="skill-dot high"></span></li>
+        <li>ServiceNow <span class="skill-dot med"></span></li>
+        <li>Slack / Teams / Zoom <span class="skill-dot high"></span></li>
+        <li>Postman / API tools <span class="skill-dot med"></span></li>
+      </ul>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Domain Knowledge</h3>
+      <ul class="skill-list">
+        <li>OTT / Pay-TV / Streaming <span class="skill-dot high"></span></li>
+        <li>Real-money Online Gaming <span class="skill-dot high"></span></li>
+        <li>SaaS Platform Delivery <span class="skill-dot high"></span></li>
+        <li>Cybersecurity Products <span class="skill-dot med"></span></li>
+        <li>Telecom / 4G LTE <span class="skill-dot med"></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <div class="section-tag">Contact</div>
+      <h2>Let's talk<br /><span style="color:var(--gold)">programs.</span></h2>
+      <p>
+        I'm actively exploring Senior TPM, Engineering Program Manager, and Delivery Manager roles across India. If you're building or scaling a delivery function, I'd love to connect.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:vashishtha.ujwal20@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          <div class="contact-link-text">
+            <span class="contact-link-label">Email</span>
+            vashishtha.ujwal20@gmail.com
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/ujwal-vashishtha-526b82134" class="contact-link" target="_blank">
+          <div class="contact-link-icon">in</div>
+          <div class="contact-link-text">
+            <span class="contact-link-label">LinkedIn</span>
+            linkedin.com/in/ujwal-vashishtha-526b82134
+          </div>
+        </a>
+        <a href="#" class="contact-link">
+          <div class="contact-link-icon">📍</div>
+          <div class="contact-link-text">
+            <span class="contact-link-label">Location</span>
+            Bengaluru, Karnataka — Open to pan-India roles
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-right reveal">
+      <h3>Open to industries</h3>
+      <ul class="domains-list">
+        <li>OTT, Streaming & Pay-TV</li>
+        <li>FinTech & BFSI</li>
+        <li>SaaS & Enterprise Software</li>
+        <li>Online Gaming & Entertainment</li>
+        <li>GCC / Global Delivery Centres</li>
+        <li>Cybersecurity & Identity</li>
+        <li>Telecom & Infrastructure</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>Ujwal Vashishtha · Senior TPM</span>
+  <span>Bengaluru, India · 2025</span>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Counter animation
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const val = Math.round(target * ease);
+      el.textContent = prefix + val + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const nums = e.target.querySelectorAll('[data-target]');
+        nums.forEach(animateCounter);
+        statObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsEl = document.querySelector('.stats');
+  if (statsEl) statObserver.observe(statsEl);
+</script>
+</body>
+</html>
